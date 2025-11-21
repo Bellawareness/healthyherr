@@ -21,16 +21,18 @@
         </nav>
     </header>
     <main>
-        <section class="contact-section animated-section" style="max-width:420px; margin:4em auto; padding:2em 1em; background:rgba(255,255,255,0.45); border-radius:24px; box-shadow:0 2px 16px rgba(158,65,180,0.10); backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); font-family:'Inter','Montserrat','Segoe UI',Arial,sans-serif; color:#2e8b57;">
+        <section class="contact-section animated-section" style="max-width:90vw; width:100%; margin:4em auto; padding:2em 1em; background:rgba(255,255,255,0.45); border-radius:24px; box-shadow:0 2px 16px rgba(158,65,180,0.10); backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); font-family:'Inter','Montserrat','Segoe UI',Arial,sans-serif; color:#2e8b57;">
             <h1>Contact Us</h1>
             <form action="https://formspree.io/f/mkgyaoaa" method="POST" class="contact-form">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-                <button type="submit" class="notify-btn">Send</button>
+                <form id="contact-form" action="https://formspree.io/f/mkgyaoaa" method="POST" class="contact-form">
+                    <label for="contact-name">Name</label>
+                    <input type="text" id="contact-name" name="name" required>
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" name="email" required>
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" name="message" rows="5" required></textarea>
+                    <button type="submit" class="notify-btn">Send</button>
+                </form>
             </form>
         </section>
     </main>
