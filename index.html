@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Healthyherr Inc.</title>
     <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Healthyherr.com - Helping women live well inside and out. Wellness, fitness, and mindfulness for women." />
-    <meta name="keywords" content="wellness, women, fitness, mindfulness, healthy, herr" />
+    <meta name="description" content="Healthyherr.com - Empowering women in health, wellness, fitness, mindfulness, nutrition, self-care, mental health, and holistic well-being. Discover tips, resources, and community for living well inside and out." />
+    <meta name="keywords" content="health, wellness, well-being, women, fitness, mindfulness, nutrition, self-care, mental health, holistic, empowerment, balance, restoration, community, healthy lifestyle, stress management, meditation, exercise, diet, support, inspiration" />
+    <meta name="author" content="Healthyherr.com" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#E5CEE2" />
     <meta name="author" content="Healthyherr.com" />
     <meta property="og:title" content="Healthyherr.com" />
     <meta property="og:description" content="Helping women live well inside and out." />
@@ -34,17 +37,21 @@
     </header>
     <main>
         <section id="coming-soon" class="coming-soon">
-            <div class="soon-content">
+            <div class="soon-content" style="max-width:90vw; width:100%; margin:4em auto; padding:2em 1em; background:rgba(255,255,255,0.45); border-radius:24px; box-shadow:0 2px 16px rgba(158,65,180,0.10); backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); font-family:'Inter','Montserrat','Segoe UI',Arial,sans-serif; color:#2e8b57; max-width:700px;">
                 <h2>Coming Soon</h2>
                 <p>We’re building a space dedicated to helping women live well inside and out.<br>
                 Stay tuned for our launch!</p>
                 <div class="arched-image-block">
                     <img src="images/Herr.png" alt="Sample" class="arched-img">
                 </div>
-                <form action="https://formspree.io/f/mkgyaoaad" method="POST" class="notify-form soon-cta">
-                    <input type="text" name="name" placeholder="Enter your name" required style="margin-bottom:0.7em;">
-                    <input type="email" name="email" placeholder="Enter your email" required>
-                    <button type="submit" class="notify-btn">Notify Me</button>
+                <form action="https://formspree.io/f/mkgyaoaa" method="POST" class="notify-form soon-cta">
+                    <form id="notify-form" action="https://formspree.io/f/mkgyaoaad" method="POST" class="notify-form soon-cta">
+                        <label for="notify-name" style="display:none;">Name</label>
+                        <input type="text" id="notify-name" name="name" placeholder="Enter your name" required style="margin-bottom:0.7em;">
+                        <label for="notify-email" style="display:none;">Email</label>
+                        <input type="email" id="notify-email" name="email" placeholder="Enter your email" required>
+                        <button type="submit" class="notify-btn">Notify Me</button>
+                    </form>
                 </form>
             </div>
         </section>
