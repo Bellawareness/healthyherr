@@ -4,7 +4,8 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    color: #78bc98;
+    color: #222;
+    background: #f5f5f1;
     box-sizing: border-box;
     z-index: -1;
 }
@@ -98,13 +99,18 @@ nav ul li a:hover, nav ul li a.active {
     background: rgba(255,255,255,0.45);
     border-radius: 24px;
     box-shadow: 0 2px 16px rgba(158,65,180,0.10);
-    padding: 2em 1.5em;
+    padding: 2em 1.2em 2em 1.2em;
+    text-align: center;
     max-width: 98vw;
     margin: 0 auto;
     animation: fadeInUp 1.2s ease;
     box-sizing: border-box;
     backdrop-filter: blur(12px) saturate(1.2);
     -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
 }
 footer {
     background: linear-gradient(90deg, #ACDBD1 0%, #FBF5BF 100%);
@@ -149,53 +155,48 @@ footer a:hover img {
 }
 
 /* Notify Form Styles */
-.notify-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
-    gap: 0.5em;
-}
-.notify-form input[type="email"] {
-    border: 1px solid #ACDBD1;
-    border-radius: 8px;
-    padding: 0.7em 1em;
-    font-size: 1em;
-    background: #FBF5BF;
-    color: #222;
-    transition: border-color 0.2s;
-}
-.notify-form input[type="email"]:focus {
-    outline: none;
-    border-color: #9E41B4;
-}
+    .notify-btn {
+        background: linear-gradient(90deg, #bb5ecf 60%, #ACDBD1 100%);
+        color: #FBF5BF;
+        border: none;
+        border-radius: 8px;
+        padding: 0.7em 1.5em;
+        margin-top: 1em;
+    }
+        .notify-form input[type="email"] {
+            font-size: 0.95em;
+            padding: 0.6em 0.8em;
+            border-radius: 7px;
+            background: #FBF5BF;
+            border: 1px solid #ACDBD1;
+            color: #222;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+
 /* Modern font import */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Muthya&display=swap');
 
-body {
-    font-family: 'Inter', 'Montserrat', 'Segoe UI', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f5f5f1;
-    color: #222;
-    min-height: 100vh;
-}
+/* Duplicate body selector removed. See consolidated block at top of file. */
 
 /* General tagline style for all pages */
 .tagline {
     color: #9E41B4;
-    font-size: 2.8em;
-    font-weight: 800;
+    font-size: 1.15em;
+    font-weight: 500;
     margin-top: 0.2em;
     margin-bottom: 0.7em;
-    letter-spacing: 2px;
-    text-shadow: none;
+    letter-spacing: 1px;
+    font-style: italic;
+    text-align: center;
     font-family: 'Montserrat', 'Inter', Arial, sans-serif;
     background: none;
     border-radius: 0;
     padding: 0.2em 0.5em;
-    display: inline-block;
+    display: block;
     border: none;
     box-shadow: none;
 }
@@ -205,7 +206,7 @@ body {
     text-align: center;
 }
 .about-story, .about-mission, .about-values, .about-initiative {
-    background: #fff;
+    background: rgba(255,255,255,0.45);
     border-radius: 20px;
     box-shadow: 0 6px 32px rgba(158,65,180,0.12);
     margin-bottom: 2.5em;
@@ -216,6 +217,8 @@ body {
     display: block;
     border: 1px solid #E5CEE2;
     transition: box-shadow 0.3s, transform 0.3s;
+        backdrop-filter: blur(12px) saturate(1.2);
+
 }
 .about-story:hover, .about-mission:hover, .about-values:hover, .about-initiative:hover {
     box-shadow: 0 12px 48px rgba(158,65,180,0.18);
@@ -380,7 +383,6 @@ nav ul li a:hover, nav ul li a.active {
 .coming-soon {
     background: transparent;
     color: #9E41B4;
-    text-align: center;
     padding: 7em 2em 6em 2em;
     min-height: 80vh;
     display: flex;
@@ -403,38 +405,43 @@ nav ul li a:hover, nav ul li a.active {
     backdrop-filter: blur(12px) saturate(1.2);
     -webkit-backdrop-filter: blur(12px) saturate(1.2);
 }
+        /* Removed duplicate .soon-content definitions */
 .soon-content h2 {
     color: #9E41B4;
-    font-size: 2em;
-    margin-bottom: 0.5em;
+    font-size: 2.5em;
+    margin-bottom: 0.7em;
+    padding-top: 0.2em;
 }
 .soon-content p {
     color: #2e8b57;
-    font-size: 1.1em;
-    margin-bottom: 1.5em;
+    font-size: 1em;
+    margin-bottom: 1.2em;
+    padding: 0 0.2em;
+    line-height: 1.6;
 }
-.soon-cta {
-    margin-top: 1em;
-}
-
-/* Button microinteraction */
-.notify-btn {
-    background: linear-gradient(90deg, #9E41B4 60%, #ACDBD1 100%);
-    color: #FBF5BF;
-    border: none;
-    border-radius: 8px;
-    padding: 0.9em 2.2em;
-    font-size: 1.15em;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 2px 12px rgba(158,65,180,0.13);
-    transition: background 0.3s, color 0.3s, transform 0.2s;
-    letter-spacing: 0.5px;
+.soon-content {
+    background: rgba(255,255,255,0.45);
+    border-radius: 24px;
+    box-shadow: 0 2px 16px rgba(158,65,180,0.10);
+    padding: 2em 1.5em;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    animation: fadeInUp 1.2s ease;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+    justify-content: center;
 }
 .notify-btn:hover {
     background: linear-gradient(90deg, #ACDBD1 0%, #9E41B4 100%);
     color: #9E41B4;
     transform: scale(1.04);
+    box-shadow: 0 4px 16px #9E41B4;
 }
 
 /* Hero Section Styles */
@@ -554,7 +561,9 @@ footer img {
 /* Responsive Styles */
 @media (max-width: 900px) {
     .soon-content {
-        padding: 1.5em 0.5em;
+        padding: 1.2em 0.2em;
+        gap: 1.2em;
+        max-width: 98vw;
     }
 }
 @media (max-width: 700px) {
@@ -576,12 +585,22 @@ footer img {
         margin-bottom: 0;
     }
     .soon-content {
-        padding: 1em 0.2em;
+        padding: 1.2em 1em 1.2em 1em;
+        gap: 1.2em;
+        max-width: 95vw;
+        margin: 1.5em auto;
+        border-radius: 18px;
+        text-align: center;
     }
 }
 @media (max-width: 600px) {
     .soon-content {
-        padding: 1em 0.2em;
+        padding: 1em 0.7em 1em 0.7em;
+        gap: 1em;
+        max-width: 98vw;
+        margin: 1em auto;
+        border-radius: 14px;
+        text-align: center;
     }
 }
 
