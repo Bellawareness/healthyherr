@@ -163,15 +163,19 @@ footer a:hover img {
         padding: 0.7em 1.5em;
         margin-top: 1em;
     }
-        .notify-form input[type="email"] {
+        .notify-form input[type="email"],
+        .notify-form input[type="text"] {
             font-size: 0.95em;
-            padding: 0.6em 0.8em;
+            padding: 0.5em 0.8em;
             border-radius: 7px;
             background: #FBF5BF;
             border: 1px solid #ACDBD1;
             color: #222;
-            width: 100%;
+            width: 80%;
+            max-width: 320px;
             box-sizing: border-box;
+            display: block;
+            margin: 0.5em auto;
         }
 
 
@@ -180,9 +184,7 @@ footer a:hover img {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Muthya&display=swap');
 
-/* Duplicate body selector removed. See consolidated block at top of file. */
 
-/* General tagline style for all pages */
 .tagline {
     color: #9E41B4;
     font-size: 1.15em;
