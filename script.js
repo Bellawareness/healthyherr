@@ -1,3 +1,62 @@
+// Subtle parallax background effect
+document.addEventListener('scroll', function() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    // Move background slower than scroll (parallax)
+    const offset = Math.round(scrollY * 0.18); // adjust speed here
+    document.body.style.setProperty('--bg-parallax-offset', offset + 'px');
+    const before = document.body;
+    if (before) {
+        // This is for the ::before pseudo-element, so we use CSS var
+        before.style.setProperty('--bg-parallax-offset', offset + 'px');
+    }
+});
+// Micro Checklist Scroll Animation
+document.addEventListener('DOMContentLoaded', function() {
+    // Checklist scroll-in animation
+    const checklistItems = document.querySelectorAll('.micro-checklist-item');
+    if (checklistItems.length > 0) {
+        function revealChecklistOnScroll() {
+            const section = document.querySelector('.micro-checklist-section');
+            if (!section) return;
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 120) {
+                checklistItems.forEach((item, idx) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, idx * 350);
+                });
+                window.removeEventListener('scroll', revealChecklistOnScroll);
+            }
+        }
+        window.addEventListener('scroll', revealChecklistOnScroll);
+        revealChecklistOnScroll();
+    }
+
+    // Checklist interactivity
+    const checklist = document.getElementById('microChecklist');
+    const result = document.getElementById('microChecklistResult');
+    const award = document.getElementById('microChecklistAward');
+    if (checklist) {
+        function updateChecklistResult() {
+            const checks = checklist.querySelectorAll('.micro-check');
+            const checked = checklist.querySelectorAll('.micro-check:checked');
+            if (checked.length === 0) {
+                result.style.display = 'block';
+                result.textContent = 'Start by checking something you did!';
+                award.style.display = 'none';
+            } else if (checked.length < checks.length) {
+                result.style.display = 'block';
+                result.textContent = `You checked ${checked.length} of ${checks.length}. Keep going!`;
+                award.style.display = 'none';
+            } else {
+                result.style.display = 'none';
+                award.style.display = 'flex';
+            }
+        }
+        checklist.addEventListener('change', updateChecklistResult);
+        updateChecklistResult();
+    }
+});
 // Simple JS for Healthyherr.com
 
 document.addEventListener('DOMContentLoaded', function() {

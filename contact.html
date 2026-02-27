@@ -3,15 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Herr</title>
+    <title>Contact Healthyherr</title>
+    <meta name="description" content="Get in touch with Healthyherr. We'd love to hear from you!" />
+    <meta name="keywords" content="contact, wellness, support, inquiry, business" />
+    <meta name="author" content="Healthyherr.com" />
+    <meta name="theme-color" content="#E5CEE2" />
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: linear-gradient(135deg, #FBF5BF 0%, #E5CEE2 100%);
+            padding: 4em 1.5em;
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-size: 2.8em;
+            color: #9E41B4;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        .contact-hero p {
+            font-size: 1.15em;
+            color: #5a3d5c;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3em 1.5em;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5em 2em;
+            box-shadow: 0 2px 16px rgba(158, 65, 180, 0.1);
+            margin-bottom: 2.5em;
+        }
+
+        .contact-section h2 {
+            font-size: 1.5em;
+            color: #9E41B4;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        .contact-form label {
+            font-weight: 600;
+            color: #5a3d5c;
+            font-size: 1em;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.9em;
+            border: 2px solid #E5CEE2;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: white;
+            color: #5a3d5c;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #9E41B4;
+            box-shadow: 0 0 0 3px rgba(158, 65, 180, 0.1);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+            font-family: 'Inter', 'Montserrat', 'Segoe UI', Arial, sans-serif;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #9E41B4 0%, #c76ba8 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 1.1em 2em;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(158, 65, 180, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(158, 65, 180, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5em;
+            margin-top: 2.5em;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, #FBF5BF 0%, #E5CEE2 100%);
+            padding: 1.5em;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #E5CEE2;
+        }
+
+        .info-item h3 {
+            font-size: 1.1em;
+            color: #9E41B4;
+            margin-bottom: 0.5em;
+        }
+
+        .info-item p {
+            color: #5a3d5c;
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        .info-item a {
+            color: #2e8b57;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .info-item a:hover {
+            color: #9E41B4;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+            margin-top: 2em;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #9E41B4 0%, #c76ba8 100%);
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icons img {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        .form-success {
+            display: none;
+            background: #2e8b57;
+            color: white;
+            padding: 1.5em;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 1.5em;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero {
+                padding: 3em 1em;
+            }
+
+            .contact-hero h1 {
+                font-size: 2em;
+            }
+
+            .contact-hero p {
+                font-size: 1em;
+            }
+
+            .contact-container {
+                padding: 2em 1em;
+            }
+
+            .contact-section {
+                padding: 1.8em 1.5em;
+            }
+
+            .contact-section h2 {
+                font-size: 1.3em;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-hero h1 {
+                font-size: 1.6em;
+            }
+
+            .contact-section {
+                padding: 1.5em 1.2em;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 0.8em;
+                font-size: 16px;
+            }
+
+            .submit-btn {
+                padding: 1em 1.5em;
+                font-size: 1em;
+            }
+
+            .social-icons {
+                gap: 0.8em;
+            }
+
+            .social-icons a {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="site-header">
         <div class="logo-space">
             <a href="index.html"><img src="images/FF-01.png" alt="Herr Logo" class="site-logo" /></a>
         </div>
-        <p class="tagline">&ldquo;You are Her and you deserve to treat yourself.&rdquo;</p>
+        <p class="tagline">You are Her and you deserve to treat yourself.</p>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -20,33 +269,87 @@
             </ul>
         </nav>
     </header>
+
     <main>
-        <section class="contact-section animated-section" style="max-width:90vw; width:100%; margin:4em auto; padding:2em 1em; background:rgba(255,255,255,0.45); border-radius:24px; box-shadow:0 2px 16px rgba(158,65,180,0.10); backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); font-family:'Inter','Montserrat','Segoe UI',Arial,sans-serif; color:#2e8b57;">
-            <h1>Contact Us</h1>
-            <form action="https://formspree.io/f/mkgyaoaa" method="POST" class="contact-form">
-                <form id="contact-form" action="https://formspree.io/f/mkgyaoaa" method="POST" class="contact-form">
-                    <label for="contact-name">Name</label>
-                    <input type="text" id="contact-name" name="name" required>
-                    <label for="contact-email">Email</label>
-                    <input type="email" id="contact-email" name="email" required>
-                    <label for="contact-message">Message</label>
-                    <textarea id="contact-message" name="message" rows="5" required></textarea>
-                    <button type="submit" class="notify-btn">Send</button>
+        <section class="contact-hero">
+            <h1>Get In Touch</h1>
+            <p>We'd love to hear from you. Whether you have questions or want to collaborate, reach out to us!</p>
+        </section>
+
+        <section class="contact-container">
+            <div class="contact-section">
+                <h2>Send us a Message</h2>
+                <div class="form-success" id="successMessage">
+                    ✓ Thank you! Your message has been sent successfully. We'll get back to you soon!
+                </div>
+                <form action="https://formspree.io/f/mkgyaoaa" method="POST" class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="contact-name">Full Name</label>
+                        <input type="text" id="contact-name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email Address</label>
+                        <input type="email" id="contact-email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject">Subject</label>
+                        <input type="text" id="contact-subject" name="subject" placeholder="What is this about?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Message</label>
+                        <textarea id="contact-message" name="message" placeholder="Tell us more..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
                 </form>
-            </form>
+            </div>
+
+            <div class="contact-section">
+                <h2>Other Ways to Connect</h2>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h3>📧 Email</h3>
+                        <p><a href="mailto:healthyherr@gmail.com">healthyherr@gmail.com</a></p>
+                    </div>
+                    <div class="info-item">
+                        <h3>📱 Follow Us</h3>
+                        <p><a href="https://www.instagram.com/healthyherr_/" target="_blank" rel="noopener">@healthyherr_</a></p>
+                    </div>
+                    <div class="info-item">
+                        <h3>💼 Business</h3>
+                        <p>Corporate wellness inquiries welcome</p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/healthyherr_/" target="_blank" rel="noopener" title="Follow us on Instagram">
+                        <img src="images/iglogo.png" alt="Instagram" />
+                    </a>
+                </div>
+            </div>
         </section>
     </main>
+
     <footer>
-        <div class="footer-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7em; padding:1.5em 0; background:linear-gradient(90deg, #FBF5BF 0%, #E5CEE2 100%); border-top:2px solid #E5CEE2;">
-            <div class="footer-tagline" style="color:#9E41B4; font-size:1.1em; font-weight:600; text-align:center; font-style:italic;">Helping women live well inside and out</div>
-            <div class="footer-meta" style="color:#6c5b7b; font-size:0.95em; text-align:center;">&copy; 2025 Healthyherr.com<br>Email: healthyherr@gmail.com</div>
-            <div class="footer-social" style="margin-top:0.3em;">
-                <a href="https://www.instagram.com/healthyherr_/" target="_blank" rel="noopener" style="display:inline-block;">
-                    <img src="images/iglogo.png" alt="Instagram" style="height:28px;width:28px;vertical-align:middle;border-radius:6px;background:#FBF5BF;border:1px solid #E5CEE2;" />
+        <div class="footer-content">
+            <div class="footer-tagline">Helping women live well inside and out</div>
+            <div class="footer-meta">Copyright 2025 Healthyherr.com<br>Email: healthyherr@gmail.com</div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/healthyherr_/" target="_blank" rel="noopener">
+                    <img src="images/iglogo.png" alt="Instagram" />
                 </a>
             </div>
         </div>
     </footer>
+
     <script src="script.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            // Form will submit normally to Formspree
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactForm').reset();
+                window.scrollTo(0, 0);
+            }, 500);
+        });
+    </script>
 </body>
 </html>

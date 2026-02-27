@@ -3,15 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Herr</title>
+    <title>About Healthyherr</title>
+    <meta name="description" content="Learn about Healthyherr - Empowering women in health, wellness, fitness, mindfulness, nutrition, self-care, mental health, and holistic well-being." />
+    <meta name="keywords" content="health, wellness, well-being, women, fitness, mindfulness, nutrition, self-care, mental health, holistic, empowerment" />
+    <meta name="author" content="Healthyherr.com" />
+    <meta name="theme-color" content="#E5CEE2" />
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(135deg, #FBF5BF 0%, #E5CEE2 100%);
+            padding: 4em 1.5em;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 2.8em;
+            color: #9E41B4;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        .about-hero p {
+            font-size: 1.2em;
+            color: #5a3d5c;
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3em 1.5em;
+        }
+
+        .about-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5em 2em;
+            margin-bottom: 2.5em;
+            box-shadow: 0 2px 16px rgba(158, 65, 180, 0.1);
+            border-left: 5px solid #9E41B4;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 24px rgba(158, 65, 180, 0.15);
+        }
+
+        .about-card.story {
+            border-left-color: #2e8b57;
+        }
+
+        .about-card.mission {
+            border-left-color: #E5769B;
+        }
+
+        .about-card.values {
+            border-left-color: #9E41B4;
+        }
+
+        .about-card.initiative {
+            border-left-color: #2e8b57;
+        }
+
+        .about-card h2 {
+            font-size: 1.8em;
+            color: #9E41B4;
+            margin-bottom: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 0.8em;
+        }
+
+        .about-card.story h2 {
+            color: #2e8b57;
+        }
+
+        .about-card.mission h2 {
+            color: #E5769B;
+        }
+
+        .about-card.initiative h2 {
+            color: #2e8b57;
+        }
+
+        .about-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FBF5BF 0%, #E5CEE2 100%);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .about-card p {
+            color: #5a3d5c;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 1em;
+        }
+
+        .about-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5em;
+            margin-top: 1.5em;
+        }
+
+        .value-item {
+            background: linear-gradient(135deg, #FBF5BF 0%, #E5CEE2 100%);
+            padding: 1.5em;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #9E41B4;
+            transition: transform 0.3s;
+        }
+
+        .value-item:hover {
+            transform: scale(1.05);
+        }
+
+        .value-item strong {
+            color: #9E41B4;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        .initiative-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2em;
+            margin-top: 1.5em;
+        }
+
+        .initiative-item {
+            background: rgba(158, 65, 180, 0.05);
+            padding: 1.5em;
+            border-radius: 12px;
+            border: 1px solid #E5CEE2;
+        }
+
+        .initiative-item strong {
+            color: #9E41B4;
+            display: block;
+            margin-bottom: 0.5em;
+            font-size: 1.05em;
+        }
+
+        .initiative-item p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 3em 1em;
+            }
+
+            .about-hero h1 {
+                font-size: 2em;
+            }
+
+            .about-hero p {
+                font-size: 1em;
+            }
+
+            .about-content {
+                padding: 2em 1em;
+            }
+
+            .about-card {
+                padding: 1.8em 1.5em;
+                margin-bottom: 2em;
+            }
+
+            .about-card h2 {
+                font-size: 1.5em;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-icon {
+                margin: 0 auto;
+            }
+
+            .values-grid,
+            .initiative-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-hero h1 {
+                font-size: 1.6em;
+            }
+
+            .about-card {
+                padding: 1.5em 1.2em;
+                border-left-width: 4px;
+            }
+
+            .about-card h2 {
+                font-size: 1.3em;
+            }
+
+            .about-card p {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="site-header">
         <div class="logo-space">
             <a href="index.html"><img src="images/FF-01.png" alt="Herr Logo" class="site-logo" /></a>
         </div>
-        <p class="tagline">&ldquo;You are Her and you deserve to treat yourself.&rdquo;</p>
+        <p class="tagline">You are Her and you deserve to treat yourself.</p>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -20,48 +236,106 @@
             </ul>
         </nav>
     </header>
+
     <main>
-        <section id="about" class="animated-section" style="max-width:700px; width:100%; margin:2.5em auto; padding:2em 0.5em; display:flex; flex-direction:column; gap:2em; background:rgba(255,255,255,0.45); border-radius:24px; box-shadow:0 2px 16px rgba(158,65,180,0.10); backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); font-family:'Inter','Montserrat','Segoe UI',Arial,sans-serif; font-style:normal; color:#2e8b57; box-sizing:border-box;">
-            <div class="about-story" style="margin-bottom:0; padding:1.2em 0.7em; background:#E5CEE2; border-radius:20px; border:1px solid #ACDBD1; width:100%; box-sizing:border-box;">
-                    <h2 style="margin-bottom:1em; font-family:'Montserrat','Inter',Arial,sans-serif; color:#9E41B4; font-size:1.5em; font-weight:700; text-align:center;">Our Story</h2>
-                    <p style="margin-bottom:1em;">Herr began with a friendship filled with laughter, support, and shared burnout from the corporate grind. We realized that the same balance we were seeking between strength, rest, and restoration, was something many women needed too.</p>
-                    <p>So we combined our skills in fitness and mindfulness to create Herr, a space dedicated to helping women live well inside and out.</p>
+        <section class="about-hero">
+            <h1>About Healthy Her</h1>
+            <p>Empowering women to live well inside and out through wellness, restoration, and community</p>
+        </section>
+
+        <section class="about-content">
+            <div class="about-card story">
+                <h2>
+                    <div class="about-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                            <path d="M50 15 Q70 30 70 50 Q70 75 50 85 Q30 75 30 50 Q30 30 50 15" fill="#2e8b57"/>
+                            <path d="M50 20 Q50 50 50 85" stroke="white" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    Our Story
+                </h2>
+                <p>Healthyherr began with a friendship filled with laughter, support, and shared burnout from the demands of modern life. We realized that the same balance we were seeking—between strength, rest, and restoration—was something many women needed too.</p>
+                <p>So we combined our passion for fitness, mindfulness, and wellness to create Healthyherr: a safe space dedicated to helping women feel empowered, grounded, and whole in every aspect of their lives.</p>
             </div>
-            <div class="about-mission" style="margin-bottom:0; padding:1.2em 0.7em; background:#E5CEE2; border-radius:20px; border:1px solid #ACDBD1; width:100%; box-sizing:border-box;">
-                    <h2 style="margin-bottom:1em; font-family:'Montserrat','Inter',Arial,sans-serif; color:#9E41B4; font-size:1.5em; font-weight:700; text-align:center;">Mission</h2>
-                    <p>To inspire well-being through rest, restoration, and empowerment helping women to feel grounded, confident, and whole.</p>
+
+            <div class="about-card mission">
+                <h2>
+                    <div class="about-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                            <path d="M50 10 L61 35 L87 40 L67 57 L73 82 L50 67 L27 82 L33 57 L13 40 L39 35 Z" fill="#E5769B"/>
+                        </svg>
+                    </div>
+                    Our Mission
+                </h2>
+                <p>To inspire well-being through rest, restoration, and empowerment—helping women feel grounded, confident, and whole. We believe that true health comes from nurturing both body and mind, and that every woman deserves to prioritize herself without guilt.</p>
             </div>
-            <div class="about-values" style="margin-bottom:0; padding:1.2em 0.7em; background:#E5CEE2; border-radius:20px; border:1px solid #ACDBD1; width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center;">
-                    <h2 style="margin-bottom:1em; font-family:'Montserrat','Inter',Arial,sans-serif; color:#9E41B4; font-size:1.5em; font-weight:700; text-align:center;">Core Values</h2>
-                    <ul style="margin-bottom:0.5em;">
-                    <li>Balance</li>
-                    <li>Empowerment</li>
-                    <li>Community</li>
-                    <li>Restoration</li>
-                </ul>
+
+            <div class="about-card values">
+                <h2>Core Values</h2>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <strong>Balance</strong>
+                        <p style="margin: 0.5em 0 0 0; color: #5a3d5c; font-size: 0.95em;">Finding harmony between strength and rest</p>
+                    </div>
+                    <div class="value-item">
+                        <strong>Empowerment</strong>
+                        <p style="margin: 0.5em 0 0 0; color: #5a3d5c; font-size: 0.95em;">Building confidence from within</p>
+                    </div>
+                    <div class="value-item">
+                        <strong>Community</strong>
+                        <p style="margin: 0.5em 0 0 0; color: #5a3d5c; font-size: 0.95em;">Supporting each other's journey</p>
+                    </div>
+                    <div class="value-item">
+                        <strong>Restoration</strong>
+                        <p style="margin: 0.5em 0 0 0; color: #5a3d5c; font-size: 0.95em;">Honoring rest and recovery</p>
+                    </div>
+                </div>
             </div>
-            <div class="about-initiative" style="margin-bottom:0; padding:1.2em 0.7em; background:#E5CEE2; border-radius:20px; border:1px solid #ACDBD1; width:100%; box-sizing:border-box;">
-                    <h2 style="margin-bottom:1em; font-family:'Montserrat','Inter',Arial,sans-serif; color:#9E41B4; font-size:1.5em; font-weight:700; text-align:center;">Corporate Wellness Initiative</h2>
-                    <ul style="margin-bottom:0.5em;">
-                    <li><strong>Fitness & Nutrition:</strong> Onsite/virtual workouts, dietitian-led workshops, healthy meal planning resources.</li>
-                    <li><strong>Mental Wellness:</strong> Guided meditations, stress management sessions.</li>
-                    <li><strong>Leadership Development:</strong> Executive coaching, mentorship circles, skill-building workshops.</li>
-                    <li><strong>Community Engagement:</strong> Networking events, retreats, online forums.</li>
-                </ul>
+
+            <div class="about-card initiative">
+                <h2>
+                    <div class="about-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                            <circle cx="50" cy="50" r="12" fill="#2e8b57"/>
+                            <circle cx="50" cy="20" r="5" fill="#E5769B"/>
+                            <circle cx="80" cy="50" r="5" fill="#E5769B"/>
+                            <circle cx="50" cy="80" r="5" fill="#E5769B"/>
+                            <circle cx="20" cy="50" r="5" fill="#E5769B"/>
+                        </svg>
+                    </div>
+                    Corporate Wellness
+                </h2>
+                <p>We partner with organizations to create customized wellness programs that prioritize employee health and happiness.</p>
+                <div class="initiative-list">
+                    <div class="initiative-item">
+                        <strong>💪 Fitness & Nutrition</strong>
+                        <p>Onsite/virtual workouts, dietitian-led workshops, and healthy meal planning resources tailored to your team.</p>
+                    </div>
+                    <div class="initiative-item">
+                        <strong>🧘 Mental Wellness</strong>
+                        <p>Guided meditations, stress management sessions, and mindfulness practices for better mental health.</p>
+                    </div>
+                    <div class="initiative-item">
+                        <strong>👥 Community Engagement</strong>
+                        <p>Networking events, wellness retreats, and online forums to build connection and support.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+
     <footer>
-        <div class="footer-content" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.7em; padding:1.5em 0; background:linear-gradient(90deg, #FBF5BF 0%, #E5CEE2 100%); border-top:2px solid #E5CEE2;">
-            <div class="footer-tagline" style="color:#9E41B4; font-size:1.1em; font-weight:600; text-align:center; font-style:italic;">Helping women live well inside and out</div>
-            <div class="footer-meta" style="color:#6c5b7b; font-size:0.95em; text-align:center;">&copy; 2025 Healthyherr.com<br>Email: healthyherr@gmail.com</div>
-            <div class="footer-social" style="margin-top:0.3em;">
-                <a href="https://www.instagram.com/healthyherr_/" target="_blank" rel="noopener" style="display:inline-block;">
-                    <img src="images/iglogo.png" alt="Instagram" style="height:28px;width:28px;vertical-align:middle;border-radius:6px;background:#FBF5BF;border:1px solid #E5CEE2;" />
+        <div class="footer-content">
+            <div class="footer-tagline">Helping women live well inside and out</div>
+            <div class="footer-meta">Copyright 2025 Healthyherr.com<br>Email: healthyherr@gmail.com</div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/healthyherr_/" target="_blank" rel="noopener">
+                    <img src="images/iglogo.png" alt="Instagram" />
                 </a>
             </div>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
