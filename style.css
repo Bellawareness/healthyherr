@@ -400,14 +400,15 @@ nav a:hover::after {
 }
 
 .event-card-combined {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(229, 206, 226, 0.6);
-    padding: 3em 2.5em;
-    border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(158, 65, 180, 0.12);
-    margin-bottom: 2.5em;
+    border: 2px solid rgba(229, 206, 226, 0.8);
+    padding: 2.5em 2em;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(158, 65, 180, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    margin: 0 auto 2.5em auto;
+    max-width: 600px;
 }
 
 .event-detail-row {
@@ -745,17 +746,16 @@ h2 {
 }
 
 .card-image {
-    width: auto;
-    height: auto;
-    max-width: 200px;
-    max-height: 200px;
-    object-fit: contain;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
     object-position: center;
     display: block;
     transition: transform 0.6s ease;
     position: relative;
     margin: auto;
     clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    flex-shrink: 0;
 }
 
 .experience-card:hover .card-image {
@@ -1041,44 +1041,120 @@ h2 {
 
 /* Footer */
 footer {
-    background: linear-gradient(90deg, #FBF5BF 0%, #E5CEE2 100%);
-    border-top: 2px solid #E5CEE2;
+    background: linear-gradient(180deg, #f8f7f5 0%, #f0ebe5 100%);
+    border-top: 1px solid #ddd;
+    margin-top: 4em;
 }
 
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.7em;
-    padding: 1.5em 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5em 2em;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+    margin-bottom: 2em;
+    align-items: flex-start;
+}
+
+.footer-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 0.8em;
+}
+
+.footer-info h3 {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 0.5em 0;
+    letter-spacing: 0.1em;
 }
 
 .footer-tagline {
-    color: #9E41B4;
-    font-size: 1.1em;
-    font-weight: 600;
-    text-align: center;
-    font-style: italic;
-}
-
-.footer-meta {
-    color: #6c5b7b;
-    font-size: 0.95em;
-    text-align: center;
+    color: #555;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: left;
+    font-style: normal;
+    margin: 0;
+    line-height: 1.5;
 }
 
 .footer-social {
-    margin-top: 0.3em;
+    text-align: right;
+}
+
+.footer-connect {
+    color: #1a1a1a;
+    font-size: 0.85em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 0.8em 0;
+}
+
+.social-link {
+    display: inline-block;
 }
 
 .footer-social img {
-    height: 28px;
-    width: 28px;
-    vertical-align: middle;
-    border-radius: 6px;
-    background: #FBF5BF;
-    border: 1px solid #E5CEE2;
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.footer-social img:hover {
+    transform: translateY(-2px);
+    border-color: #9E41B4;
+    box-shadow: 0 4px 12px rgba(158, 65, 180, 0.15);
+}
+
+.footer-divider {
+    height: 1px;
+    background: #ddd;
+    margin: 0 0 1.5em 0;
+}
+
+.footer-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    align-items: center;
+}
+
+.footer-meta {
+    color: #666;
+    font-size: 0.85em;
+    text-align: left;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.footer-contact {
+    color: #666;
+    font-size: 0.85em;
+    text-align: right;
+    font-weight: 500;
+    margin: 0;
+}
+
+.footer-contact a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-contact a:hover {
+    color: #9E41B4;
+    text-decoration: underline;
 }
 
 /* Responsive Design */
@@ -1096,7 +1172,22 @@ footer {
     }
 
     .philosophy-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2em;
+    }
+
+    .philosophy-card {
+        padding: 1.4em 0.8em;
+    }
+
+    .philosophy-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 0.8em;
+    }
+
+    .philosophy-card p {
+        font-size: 0.9em;
     }
 
     .experiences-grid {
@@ -1110,13 +1201,12 @@ footer {
     }
 
     .card-image {
-        width: auto;
-        height: auto;
-        max-width: 180px;
-        max-height: 180px;
-        object-fit: contain;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
         padding-top: 1.5em;
         margin: 0 auto;
+        flex-shrink: 0;
     }
 
     .card-left .card-image,
@@ -1199,7 +1289,9 @@ footer {
     }
     .event-card-combined {
         padding: 1.75em;
-        border-radius: 16px;
+        border-radius: 20px;
+        max-width: 90%;
+        margin: 0 auto 2.5em auto;
     }
 
     .event-detail-row {
