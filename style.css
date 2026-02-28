@@ -14,16 +14,35 @@ body {
 
 /* Header Styles */
 .site-header {
-    background: white;
+    background: linear-gradient(135deg, #faf8f4 0%, #f5f0e8 50%, #ede7f0 100%);
     padding: 2.5em 1.5em;
     text-align: center;
     border-bottom: 1px solid #e5e0e0;
     box-shadow: 0 2px 8px rgba(158, 65, 180, 0.08);
+    position: relative;
+}
+
+/* Add silk texture effect */
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.05) 2px, rgba(255,255,255,.05) 4px),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.05) 2px, rgba(255,255,255,.05) 4px);
+    background-size: 3px 3px;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .logo-space {
     margin-bottom: 1em;
     animation: slideDown 0.6s ease-out;
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes slideDown {
@@ -54,6 +73,8 @@ body {
     margin-bottom: 1.5em;
     font-weight: 500;
     letter-spacing: 0.3px;
+    position: relative;
+    z-index: 1;
 }
 
 nav ul {
@@ -62,6 +83,8 @@ nav ul {
     justify-content: center;
     gap: 2.5em;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 nav a {
@@ -96,7 +119,7 @@ nav a:hover::after {
 /* Hero Banner Section */
 .hero-banner {
     background: linear-gradient(180deg, #fafaf8 0%, #f5f0e8 100%);
-    padding: 4em 1.5em;
+    padding: 2.5em 1.5em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,7 +251,190 @@ nav a:hover::after {
     transform: scale(1.03);
 }
 
-/* Philosophy Section */
+/* Welcome Section */
+.welcome-section {
+    background: linear-gradient(135deg, #fafaf8 0%, #f5f0e8 50%, #ede7f0 100%);
+    padding: 0 1.5em 4em 1.5em;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(158, 65, 180, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 16s ease-in-out infinite;
+    z-index: 0;
+}
+
+.event-banner {
+    position: relative;
+    height: 380px;
+    background: linear-gradient(135deg, #E5CEE2 0%, #FBF5BF 100%);
+    overflow: hidden;
+    border-radius: 16px;
+    margin-bottom: 3em;
+    box-shadow: 0 12px 40px rgba(158, 65, 180, 0.15);
+    z-index: 1;
+}
+
+.event-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.event-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(158, 65, 180, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+}
+
+.event-banner-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    text-align: center;
+    z-index: 2;
+}
+
+.event-banner-content h2 {
+    color: white;
+    font-size: 2.8em;
+    margin: 0.5em 0 0.75em 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-weight: 800;
+}
+
+.event-tagline {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.15em;
+    margin: 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.4;
+}
+
+.welcome-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.sponsored-badge {
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1em;
+    margin-bottom: 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2em;
+    margin-bottom: 2.5em;
+}
+
+.event-info {
+    background: white;
+    padding: 1.5em;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(158, 65, 180, 0.1);
+}
+
+.event-info h3 {
+    color: #9E41B4;
+    margin: 0 0 0.5em 0;
+    font-size: 1.2em;
+}
+
+.event-info p {
+    color: #5a3d5c;
+    margin: 0;
+    font-size: 0.95em;
+}
+
+.event-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #9E41B4 0%, #c76ba8 100%);
+    color: white;
+    padding: 1em 2.5em;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 24px rgba(158, 65, 180, 0.25);
+}
+
+.event-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(158, 65, 180, 0.35);
+}
+
+.sponsored-badge {
+    text-align: center;
+    color: #9E41B4;
+    font-weight: 700;
+    font-size: 0.95em;
+    margin-bottom: 1.5em;
+    letter-spacing: 0.5px;
+}
+
+.event-card-combined {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(229, 206, 226, 0.6);
+    padding: 3em 2.5em;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(158, 65, 180, 0.12);
+    margin-bottom: 2.5em;
+}
+
+.event-detail-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5em;
+}
+
+.event-detail-item {
+    text-align: center;
+}
+
+.event-detail-item h3 {
+    color: #9E41B4;
+    margin: 0 0 0.75em 0;
+    font-size: 1.15em;
+    font-weight: 700;
+}
+
+.event-detail-item p {
+    color: #8b7aa0;
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
 .philosophy-section {
     padding: 3em 1.5em;
     text-align: center;
@@ -279,6 +485,47 @@ h2 {
     margin-bottom: 0.8em;
     font-weight: 700;
     letter-spacing: -0.5px;
+}
+
+/* Welcome Section */
+.welcome-section {
+    background: linear-gradient(135deg, #E5CEE2 0%, #FBF5BF 100%);
+    padding: 3em 1.5em;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -15%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(158, 65, 180, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.welcome-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.welcome-container h2 {
+    font-size: 2.5em;
+    color: #9E41B4;
+    margin-bottom: 0.5em;
+}
+
+.welcome-message {
+    font-size: 1.3em;
+    color: #5a3d5c;
+    margin-bottom: 2.5em;
+    font-weight: 500;
 }
 
 .philosophy-section h2 {
@@ -398,47 +645,55 @@ h2 {
 .experiences-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5em;
-    max-width: 1200px;
+    gap: 0;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 2em;
+    padding: 0;
     position: relative;
     z-index: 1;
 }
 
+.experience-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(158, 65, 180, 0.15);
+}
+
 .experience-card {
     background: white;
-    border-radius: 16px;
+    border-radius: 0;
     box-shadow: 0 4px 20px rgba(158, 65, 180, 0.12);
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-    border-top: 5px solid #9E41B4;
+    border: none;
     display: grid;
-    grid-template-columns: 1fr 240px;
+    grid-template-columns: 1fr 1fr;
     overflow: hidden;
     position: relative;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
     align-items: stretch;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%);
 }
 
 .experience-card:nth-child(1) {
-    background: linear-gradient(135deg, #f5e6f0 0%, #fce4ec 100%);
-    grid-template-columns: 1fr 240px;
+    background: linear-gradient(90deg, #E5CEE2 0%, #FBF5BF 100%);
+    grid-template-columns: 1fr 1fr;
 }
 
 .experience-card:nth-child(2) {
-    background: linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
-    grid-template-columns: 240px 1fr;
+    background: linear-gradient(90deg, #FBF5BF 0%, #ACDBD1 100%);
+    grid-template-columns: 1fr 1fr;
 }
 
 .experience-card:nth-child(3) {
-    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-    grid-template-columns: 1fr 240px;
+    background: linear-gradient(90deg, #E5CEE2 0%, #FBF5BF 100%);
+    grid-template-columns: 1fr 1fr;
 }
 
 .experience-card:nth-child(4) {
-    background: linear-gradient(135deg, #ede7f6 0%, #ddd6f3 100%);
-    grid-template-columns: 240px 1fr;
+    background: linear-gradient(90deg, #FBF5BF 0%, #ACDBD1 100%);
+    grid-template-columns: 1fr 1fr;
 }
 
 @keyframes fadeInUp {
@@ -473,22 +728,6 @@ h2 {
     box-shadow: 0 12px 40px rgba(158, 65, 180, 0.2);
 }
 
-.experience-card.featured {
-    border-top-color: #9E41B4;
-}
-
-.experience-card.featured:nth-child(2) {
-    border-top-color: #E5769B;
-}
-
-.experience-card.featured:nth-child(3) {
-    border-top-color: #2e8b57;
-}
-
-.experience-card.featured:nth-child(4) {
-    border-top-color: #9E41B4;
-}
-
 .card-left .card-image {
     order: 2;
 }
@@ -506,15 +745,16 @@ h2 {
 }
 
 .card-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
     object-position: center;
     display: block;
     transition: transform 0.6s ease;
     position: relative;
     margin: auto;
-    max-width: 100%;
     clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
 }
 
@@ -523,7 +763,7 @@ h2 {
 }
 
 .card-content {
-    padding: 1.5em;
+    padding: 2.5em 2.5em;
     display: flex;
     flex-direction: column;
     gap: 1.2em;
@@ -575,23 +815,26 @@ h2 {
 
 .card-header h3 {
     font-size: 1.4em;
-    color: #9E41B4;
+    color: #2d2d2d;
     margin: 0;
     font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .card-subtitle {
-    color: #5a3d5c;
+    color: #3d3d3d;
     font-size: 0.95em;
     font-style: italic;
     margin: 0 0 1em 0;
+    font-weight: 600;
 }
 
 .card-text {
-    color: #5a3d5c;
+    color: #4a4a4a;
     font-size: 1em;
     line-height: 1.6;
     margin: 0 0 1em 0;
+    font-weight: 500;
 }
 
 .card-text strong {
@@ -840,16 +1083,16 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .hero-content {
-        grid-template-columns: 1fr;
-    }
-
     .hero-title {
-        font-size: 2em;
+        font-size: 2.5em;
     }
 
     .hero-subtitle {
-        font-size: 1.1em;
+        font-size: 1.2em;
+    }
+
+    .hero-banner {
+        padding: 3em 1em;
     }
 
     .philosophy-grid {
@@ -867,7 +1110,13 @@ footer {
     }
 
     .card-image {
-        height: 200px;
+        width: auto;
+        height: auto;
+        max-width: 180px;
+        max-height: 180px;
+        object-fit: contain;
+        padding-top: 1.5em;
+        margin: 0 auto;
     }
 
     .card-left .card-image,
@@ -907,7 +1156,70 @@ footer {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .welcome-section {
+        padding: 0 1em 3em 1em;
+    }
+
+    .event-banner {
+        height: 300px;
+        margin-bottom: 2.5em;
+        border-radius: 12px;
+    }
+
+    .event-banner-content h2 {
+        font-size: 2em;
+        margin: 0.3em 0 0.5em 0;
+    }
+
+    .event-tagline {
+        font-size: 1em;
+    }
+
+    .sponsored-badge {
+        font-size: 0.85em;
+    }
+
+    .event-card-combined {
+        padding: 2em 1.5em;
+        border-radius: 16px;
+    }
+
+    .event-detail-row {
+        gap: 1.5em;
+    }
+
+    .event-detail-item h3 {
+        font-size: 1em;
+        margin-bottom: 0.5em;
+    }
+
+    .event-detail-item p {
+        font-size: 0.9em;
+    }
+    .event-card-combined {
+        padding: 1.75em;
+        border-radius: 16px;
+    }
+
+    .event-detail-row {
+        gap: 1.25em;
+    }
+
+    .event-detail-item h3 {
+        font-size: 1em;
+        margin-bottom: 0.5em;
+    }
+
+    .event-detail-item p {
+        font-size: 0.9em;
+    }
+
+    .event-btn {
+        padding: 0.9em 2em;
+        font-size: 0.95em;
+    }
+
     .site-header {
         padding: 1.5em 1em;
     }
