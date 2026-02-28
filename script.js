@@ -107,3 +107,68 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     showSlides(slideIndex);
 });
+
+// Confetti and quotes celebration
+const healthQuotes = [
+    "Your wellness journey starts today. Be kind to yourself.",
+    "Rest is not laziness, it's self-care. You deserve it.",
+    "Every healthy choice is a step towards the best version of you.",
+    "Your body is a temple. Treat it with love and gratitude.",
+    "Healing happens when you prioritize YOUR health first."
+];
+
+let currentQuoteIndex = 0;
+
+function celebrateBeginning(event) {
+    event.preventDefault();
+    
+    // Display next quote in sequence
+    const quote = healthQuotes[currentQuoteIndex];
+    const quoteDisplay = document.getElementById('quoteDisplay');
+    quoteDisplay.textContent = `"${quote}"`;
+    quoteDisplay.style.animation = 'none';
+    setTimeout(() => {
+        quoteDisplay.style.animation = 'fadeInUp 0.6s ease-out';
+    }, 10);
+    
+    // Cycle to next quote
+    currentQuoteIndex = (currentQuoteIndex + 1) % healthQuotes.length;
+    
+    // Create confetti
+    createConfetti();
+}
+
+function createConfetti() {
+    const colors = ['#ACDBD1', '#9E41B4', '#FBF5BF', '#E5CEE2', '#2e8b57'];
+    const confettiPieces = 50;
+    
+    for (let i = 0; i < confettiPieces; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = '-10px';
+        confetti.style.borderRadius = '50%';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.zIndex = '9999';
+        
+        document.body.appendChild(confetti);
+        
+        const duration = Math.random() * 2 + 2; // 2-4 seconds
+        const xOffset = (Math.random() - 0.5) * 200; // -100 to 100px
+        
+        confetti.animate([
+            { transform: 'translateY(0) translateX(0)', opacity: 1 },
+            { transform: `translateY(${window.innerHeight + 10}px) translateX(${xOffset}px)`, opacity: 0 }
+        ], {
+            duration: duration * 1000,
+            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        });
+        
+        setTimeout(() => {
+            confetti.remove();
+        }, duration * 1000);
+    }
+}
