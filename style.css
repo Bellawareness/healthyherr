@@ -2013,6 +2013,19 @@ footer {
     transform: translateX(4px);
 }
 
+.launch-hero-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 1rem;
+    display: block;
+}
+
+.launch-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+}
+
 /* Newsletter Section */
 .newsletter-section {
     background: linear-gradient(135deg, #E5CEE2 0%, #FBF5BF 100%);
