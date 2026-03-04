@@ -108,31 +108,47 @@ document.addEventListener('DOMContentLoaded', function() {
     showSlides(slideIndex);
 });
 
-// Confetti and quotes celebration
-const healthQuotes = [
-    "Your wellness journey starts today. Be kind to yourself.",
-    "Rest is not laziness, it's self-care. You deserve it.",
-    "Every healthy choice is a step towards the best version of you.",
-    "Your body is a temple. Treat it with love and gratitude.",
-    "Healing happens when you prioritize YOUR health first."
-];
-
-let currentQuoteIndex = 0;
+// Confetti and score-based rewards
+const scoreMessages = {
+    0: {
+        title: "Starting Your Journey",
+        message: "Your wellness story begins whenever you're ready. Take your first step today!"
+    },
+    1: {
+        title: "Great Start! 1/4",
+        message: "You've taken the first step! Every small act of self-care matters. Keep going!"
+    },
+    2: {
+        title: "You're Doing Well! 2/4",
+        message: "You're halfway there! You're showing up for yourself, and that's beautiful."
+    },
+    3: {
+        title: "Almost Perfect! 3/4",
+        message: "You're so close! One more step and you'll have a complete self-care day."
+    },
+    4: {
+        title: "Perfect Self-Care Day! 🌟 4/4",
+        message: "Amazing! You've nailed self-care today. You deserve to celebrate yourself!"
+    }
+};
 
 function celebrateBeginning(event) {
     event.preventDefault();
     
-    // Display next quote in sequence
-    const quote = healthQuotes[currentQuoteIndex];
+    // Calculate score based on checklist
+    const checklist = document.getElementById('microChecklist');
+    const checked = checklist.querySelectorAll('.micro-check:checked').length;
+    
+    // Get appropriate message for score
+    const scoreData = scoreMessages[checked];
     const quoteDisplay = document.getElementById('quoteDisplay');
-    quoteDisplay.textContent = `"${quote}"`;
+    
+    // Create reward message
+    quoteDisplay.innerHTML = `<div class="reward-message"><div class="reward-title">${scoreData.title}</div><div class="reward-text">"${scoreData.message}"</div></div>`;
     quoteDisplay.style.animation = 'none';
     setTimeout(() => {
         quoteDisplay.style.animation = 'fadeInUp 0.6s ease-out';
     }, 10);
-    
-    // Cycle to next quote
-    currentQuoteIndex = (currentQuoteIndex + 1) % healthQuotes.length;
     
     // Create confetti
     createConfetti();
