@@ -106,7 +106,56 @@ document.addEventListener('DOMContentLoaded', function() {
         if (dots[slideIndex-1]) dots[slideIndex-1].className += ' active';
     }
     showSlides(slideIndex);
+
+    // Spin Class Photo Slider
+    initSpinClassSliders();
 });
+
+function initSpinClassSliders() {
+    const sliders = document.querySelectorAll('[data-slider-id]');
+    sliders.forEach(slider => {
+        const sliderId = slider.getAttribute('data-slider-id');
+        const slides = slider.querySelectorAll('.spin-slide');
+        const dots = slider.querySelectorAll('.spinclass-dot');
+        const prevBtn = slider.querySelector('.spin-prev');
+        const nextBtn = slider.querySelector('.spin-next');
+
+        if (slides.length === 0) return;
+
+        let currentSlideIndex = 0;
+
+        function showSlide(n) {
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === n);
+            });
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === n);
+            });
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                currentSlideIndex = idx;
+                showSlide(currentSlideIndex);
+            });
+        });
+
+        showSlide(0);
+    });
+}
 
 // Confetti and score-based rewards
 const scoreMessages = {
