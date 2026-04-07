@@ -203,6 +203,142 @@ function celebrateBeginning(event) {
     createConfetti();
 }
 
+// Instructor Video Toggle
+function toggleInstructorVideo(btn) {
+    const wrapper = btn.closest('.instructor-video-wrapper');
+    const videoContainer = wrapper.querySelector('.instructor-video');
+    const video = videoContainer.querySelector('video');
+
+    if (videoContainer.style.display === 'none') {
+        videoContainer.style.display = 'block';
+        btn.classList.add('active');
+        btn.querySelector('span').textContent = 'Hide Video';
+        if (video) video.play();
+    } else {
+        videoContainer.style.display = 'none';
+        btn.classList.remove('active');
+        btn.querySelector('span').textContent = 'Watch Intro';
+        if (video) video.pause();
+    }
+}
+
+// Instructor Slider
+function initInstructorSlider() {
+    const sliders = document.querySelectorAll('[data-instructor-slider]');
+
+    sliders.forEach(slider => {
+        const slides = slider.querySelectorAll('.instructor-slide');
+        const dotsContainer = slider.querySelector('.instructor-dots');
+        const prevBtn = slider.querySelector('.instructor-prev');
+        const nextBtn = slider.querySelector('.instructor-next');
+
+        if (slides.length === 0) return;
+
+        // Add single-instructor class if only one slide
+        if (slides.length === 1) {
+            slider.classList.add('single-instructor');
+            return;
+        }
+
+        let currentIndex = 0;
+
+        // Create dots
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.classList.add('instructor-dot');
+            dot.setAttribute('aria-label', `Go to instructor ${idx + 1}`);
+            if (idx === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(idx));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = slider.querySelectorAll('.instructor-dot');
+
+        function showSlide(index) {
+            // Pause any playing videos in current slide
+            const currentSlide = slides[currentIndex];
+            const currentVideo = currentSlide.querySelector('video');
+            if (currentVideo) currentVideo.pause();
+
+            // Reset video toggle button
+            const currentBtn = currentSlide.querySelector('.video-toggle-btn');
+            const currentVideoContainer = currentSlide.querySelector('.instructor-video');
+            if (currentBtn && currentVideoContainer) {
+                currentVideoContainer.style.display = 'none';
+                currentBtn.classList.remove('active');
+                const btnText = currentBtn.querySelector('span');
+                if (btnText) btnText.textContent = 'Watch Intro';
+            }
+
+            // Update slides
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === index);
+            });
+
+            // Update dots
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === index);
+            });
+
+            currentIndex = index;
+        }
+
+        function goToSlide(index) {
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+            showSlide(index);
+        }
+
+        function nextSlide() {
+            goToSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(currentIndex - 1);
+        }
+
+        // Button events
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide(); // Swipe left = next
+                } else {
+                    prevSlide(); // Swipe right = prev
+                }
+            }
+        }
+
+        // Keyboard navigation when slider is focused
+        slider.setAttribute('tabindex', '0');
+        slider.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+    });
+}
+
+// Initialize instructor slider on DOM ready
+document.addEventListener('DOMContentLoaded', initInstructorSlider);
+
 function createConfetti() {
     const colors = ['#ACDBD1', '#9E41B4', '#FBF5BF', '#E5CEE2', '#2e8b57'];
     const confettiPieces = 50;

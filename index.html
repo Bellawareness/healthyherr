@@ -10,9 +10,9 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="HERR Inc.">
-    <meta name="twitter:description" content="Wellness Rest and Recovery">
+    <meta name="twitter:description" content="HERR - Your wellness community dedicated to rest, recovery, and self-care for women.">
     <meta name="twitter:image" content="images/FF-01.png">
-    <title>HERR Inc.  Wellness Rest and Recovery</title>
+    <title>HERR Inc.</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,7 +23,6 @@
         <p class="tagline">Helping women live well inside and out</p>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="events.html">Events</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -33,6 +32,14 @@
 
     <main>
         <section class="hero-banner">
+            <!-- Floating Accent Shapes -->
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
             <div class="hero-content">
                 <div class="hero-text">
                     <div class="hero-logo">
@@ -43,13 +50,13 @@
                 </div>
                 <div class="hero-octagon-container">
                     <div class="octagon octagon-1">
-                        <img src="images/group.JPG" alt="Spin class moment" />
+                        <img src="images/two.jpg" alt="Spin class moment" />
                     </div>
                     <div class="octagon octagon-2">
-                        <img src="images/group1.JPG" alt="Spin class moment" />
+                        <img src="images/five.jpg" alt="Spin class moment" />
                     </div>
                     <div class="octagon octagon-3">
-                        <img src="images/member.JPG" alt="Spin class moment" />
+                        <img src="images/four.JPG" alt="Spin class moment" />
                     </div>
                  
                 </div>
@@ -235,7 +242,156 @@
             </div>
         </section>
 
+        <!-- Instructors Section -->
+        <section class="instructors-section" id="instructors">
+            <div class="instructors-container">
+                <h2>Meet Your Instructors</h2>
+                <p class="instructors-subtitle">Guiding you on your wellness journey</p>
 
+                <!-- Instructor Slider -->
+                <div class="instructor-slider" data-instructor-slider>
+                    <div class="instructor-slides">
+
+                        <!-- Instructor 1 - Kitt -->
+                        <div class="instructor-slide active">
+                            <div class="instructor-card">
+                                <div class="instructor-media">
+                                    <div class="instructor-photo">
+                                        <img src="images/Herr.png" alt="Kitt - Founder" />
+                                    </div>
+                                    <div class="instructor-video-wrapper">
+                                        <button class="video-toggle-btn" onclick="toggleInstructorVideo(this)">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                            <span>Watch Intro</span>
+                                        </button>
+                                        <div class="instructor-video" style="display: none;">
+                                            <video controls playsinline>
+                                                <source src="videos/kitt-intro.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-header">
+                                        <h3 class="instructor-name">Kitt</h3>
+                                        <span class="instructor-role">Spin Instructor</span>
+                                    </div>
+                                    <div class="instructor-bio">
+                                        <p>Passionate about helping women find balance, strength, and joy through movement. With years of experience in fitness and wellness. </p>
+                                    </div>
+                                    <div class="instructor-classes">
+                                        <h4>Classes </h4>
+                                        <div class="class-tags">
+                                            <span class="class-tag">Soca Spin</span>
+                                            <span class="class-tag">Group Fitness</span>
+                                        </div>
+                                    </div>
+                                    <div class="instructor-details">
+                                        <div class="detail-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <path d="M12 6v6l4 2"/>
+                                            </svg>
+                                            <span>5+ Years Experience</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="9" cy="7" r="4"/>
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                                            </svg>
+                                            <span>500+ Women Coached</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                                <polyline points="22 4 12 14.01 9 11.01"/>
+                                            </svg>
+                                            <span>Certified Instructor</span>
+                                        </div>
+                                    </div>
+                                    <a href="contact.html" class="instructor-cta">Book a Class</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Instructor 2 - Bella -->
+                        <div class="instructor-slide">
+                            <div class="instructor-card">
+                                <div class="instructor-media">
+                                    <div class="instructor-photo">
+                                        <img src="images/Herr.png" alt="Bella - Meditation Practitioner" />
+                                    </div>
+                                    <div class="instructor-video-wrapper">
+                                        <button class="video-toggle-btn" onclick="toggleInstructorVideo(this)">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                            <span>Watch Intro</span>
+                                        </button>
+                                        <div class="instructor-video" style="display: none;">
+                                            <video controls playsinline poster="images/bella-video-poster.jpg">
+                                                <source src="videos/bella-intro.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="instructor-info">
+                                    <div class="instructor-header">
+                                        <h3 class="instructor-name">Bella</h3>
+                                        <span class="instructor-role">Meditation Practitioner</span>
+                                    </div>
+                                    <div class="instructor-bio">
+                                        <p>With over 3,500 meditation sessions practiced, Bella embodies the path to a calm mind and joyful living. Her personal journey inspires women to reconnect with themselves and find inner peace.</p>
+                                    </div>
+                                    <div class="instructor-classes">
+                                        <h4>Classes & Specialties</h4>
+                                        <div class="class-tags">
+                                            <span class="class-tag">Meditation Practice</span>
+                                            <span class="class-tag">Breathwork</span>
+                                            <span class="class-tag">Mindfulness</span>
+                                        </div>
+                                    </div>
+                                    <div class="instructor-details">
+                                        <div class="detail-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                                                <path d="M12 6v6l4 2"/>
+                                            </svg>
+                                            <span>3,500+ Sessions Practiced</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                            </svg>
+                                            <span>Calm Mind & Joyful Living</span>
+                                        </div>
+                                    </div>
+                                    <a href="contact.html" class="instructor-cta">Connect with Bella</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add more instructors here by copying the template above -->
+
+                    </div>
+
+                    <!-- Slider Controls -->
+                    <div class="instructor-slider-controls">
+                        <button class="instructor-nav-arrow instructor-prev" aria-label="Previous instructor">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                        </button>
+                        <div class="instructor-dots"></div>
+                        <button class="instructor-nav-arrow instructor-next" aria-label="Next instructor">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
 
         <section id="micro-checklist" class="micro-checklist-section">
             <div class="micro-checklist-container">
