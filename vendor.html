@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Partner With Us | HERR Wellness</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .vendor-hero {
+            background: linear-gradient(135deg, #f9f7f3 0%, #f5f0e8 50%, #faf8f4 100%);
+            padding: 3em 1.5em 4em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vendor-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1.5em;
+        }
+
+        .vendor-hero-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 1.5em auto 0;
+            border: 4px solid white;
+            box-shadow: 0 8px 30px rgba(158, 65, 180, 0.2);
+        }
+
+        .vendor-hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(158, 65, 180, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .vendor-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #2e8b57 0%, #3da36a 100%);
+            color: white;
+            padding: 0.5em 1.5em;
+            border-radius: 25px;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5em;
+        }
+
+        .vendor-hero h1 {
+            font-size: 2.8em;
+            color: #5a3d5c;
+            margin: 0 0 0.5em 0;
+            font-weight: 700;
+        }
+
+        .vendor-hero h1 span {
+            color: #9E41B4;
+        }
+
+        .vendor-subtitle {
+            font-size: 1.15em;
+            color: #5a3d5c;
+            opacity: 0.85;
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .vendor-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3em 1.5em;
+        }
+
+        .vendor-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2em;
+            margin-bottom: 1.5em;
+            box-shadow: 0 8px 30px rgba(158, 65, 180, 0.08);
+            position: relative;
+        }
+
+        .vendor-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #9E41B4, #E5769B, #2e8b57);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .vendor-section h2 {
+            color: #9E41B4;
+            font-size: 1.4em;
+            margin: 0 0 0.8em 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(158, 65, 180, 0.08) 0%, rgba(229, 118, 155, 0.06) 100%);
+            border-radius: 12px;
+            padding: 1.2em 1.5em;
+            margin-bottom: 1em;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #5a3d5c;
+            line-height: 1.6;
+        }
+
+        .event-info {
+            display: flex;
+            gap: 2em;
+            flex-wrap: wrap;
+            margin-top: 1em;
+        }
+
+        .event-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            color: #5a3d5c;
+        }
+
+        .event-info-item svg {
+            width: 20px;
+            height: 20px;
+            color: #9E41B4;
+        }
+
+        .perks-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8em;
+        }
+
+        .perks-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+            color: #5a3d5c;
+            font-size: 0.95em;
+        }
+
+        .perks-list svg {
+            width: 18px;
+            height: 18px;
+            color: #2e8b57;
+            flex-shrink: 0;
+        }
+
+        .vendor-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2em;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4em;
+        }
+
+        .form-group label {
+            color: #5a3d5c;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.9em 1em;
+            border: 2px solid rgba(158, 65, 180, 0.15);
+            border-radius: 10px;
+            font-size: 1em;
+            color: #5a3d5c;
+            background: #faf8f4;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #9E41B4;
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+        }
+
+        .feature-section {
+            background: linear-gradient(135deg, rgba(46, 139, 87, 0.06) 0%, rgba(158, 65, 180, 0.04) 100%);
+            border-radius: 12px;
+            padding: 1.2em;
+            margin-top: 0.5em;
+        }
+
+        .feature-section h3 {
+            color: #2e8b57;
+            font-size: 1em;
+            margin: 0 0 0.8em 0;
+        }
+
+        .vendor-submit {
+            background: linear-gradient(135deg, #9E41B4 0%, #E5769B 100%);
+            color: white;
+            border: none;
+            padding: 1em 2em;
+            border-radius: 30px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: center;
+            margin-top: 0.5em;
+        }
+
+        .vendor-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(158, 65, 180, 0.35);
+        }
+
+        .vendor-footer {
+            text-align: center;
+            padding: 1.5em;
+            color: #999;
+            font-size: 0.85em;
+        }
+
+        .vendor-footer a {
+            color: #9E41B4;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .vendor-hero h1 { font-size: 2em; }
+            .form-row { grid-template-columns: 1fr; }
+            .perks-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="vendor-hero">
+        <img src="images/FF-01.png" alt="HERR Logo" class="vendor-logo">
+        <span class="vendor-badge">You've Been Selected</span>
+        <h1>Partner With <span>HERR</span></h1>
+        <p class="vendor-subtitle">We'd love for you to be part of the official HERR launch event. Here's everything you need to know.</p>
+        <img src="images/five.jpg" alt="HERR Wellness" class="vendor-hero-image">
+    </div>
+
+    <div class="vendor-content">
+        <section class="vendor-section">
+            <h2>About HERR Events</h2>
+            <div class="highlight-box">
+                <p>HERR is a wellness community for women focused on fitness, mindfulness, and self-care. We're preparing for our <strong>official launch event</strong> and looking for amazing vendors to be part of this special moment.</p>
+            </div>
+            <div class="event-info">
+                <div class="event-info-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                    <span>End of June</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="vendor-section">
+            <h2>What's In It For You</h2>
+            <ul class="perks-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Showcase your talents</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Feature on our Instagram</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Website promotion</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Connect with new clients</li>
+            </ul>
+        </section>
+
+        <section class="vendor-section">
+            <h2>Let's Connect</h2>
+            <form action="https://formspree.io/f/mkgyaoaa" method="POST" class="vendor-form">
+                <input type="hidden" name="form_type" value="Vendor Partner Inquiry">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vendor-name">Your Name *</label>
+                        <input type="text" id="vendor-name" name="name" required placeholder="Full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="vendor-business">Business Name</label>
+                        <input type="text" id="vendor-business" name="business_name" placeholder="Your business name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vendor-email">Email *</label>
+                        <input type="email" id="vendor-email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="vendor-phone">Phone *</label>
+                        <input type="tel" id="vendor-phone" name="phone" required placeholder="(123) 456-7890">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vendor-service">What Do You Offer? *</label>
+                    <select id="vendor-service" name="service_type" required>
+                        <option value="">Select your service...</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Videography">Videography</option>
+                        <option value="DJ / Music">DJ / Music</option>
+                        <option value="Yoga / Fitness Instructor">Yoga / Fitness Instructor</option>
+                        <option value="Massage / Bodywork">Massage / Bodywork</option>
+                        <option value="Hair / Makeup">Hair / Makeup</option>
+                        <option value="Wellness Products">Wellness Products</option>
+                        <option value="Decor / Florals">Decor / Florals</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="vendor-about">Tell Us About What You Do</label>
+                    <textarea id="vendor-about" name="about" placeholder="Share a bit about your services and what makes you special..."></textarea>
+                </div>
+
+                <div class="feature-section">
+                    <h3>How Would You Like to Be Featured?</h3>
+                    <div class="form-group">
+                        <label for="vendor-display-name">Display Name</label>
+                        <input type="text" id="vendor-display-name" name="display_name" placeholder="How should we introduce you?">
+                    </div>
+                    <div class="form-group">
+                        <label for="vendor-bio">Short Bio</label>
+                        <textarea id="vendor-bio" name="promotional_bio" placeholder="A few sentences about you for our social media..."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vendor-instagram">Instagram</label>
+                            <input type="text" id="vendor-instagram" name="instagram" placeholder="@handle">
+                        </div>
+                        <div class="form-group">
+                            <label for="vendor-website">Website</label>
+                            <input type="url" id="vendor-website" name="website" placeholder="yoursite.com">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vendor-questions">Questions or Comments</label>
+                    <textarea id="vendor-questions" name="questions" placeholder="Anything you'd like to ask or share?"></textarea>
+                </div>
+
+                <button type="submit" class="vendor-submit">I'm In!</button>
+            </form>
+        </section>
+    </div>
+
+    <div class="vendor-footer">
+        <p>We're so excited to connect with you!</p>
+        <p>Questions? <a href="mailto:healthyherr@gmail.com">healthyherr@gmail.com</a></p>
+    </div>
+</body>
+</html>
