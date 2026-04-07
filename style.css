@@ -1561,10 +1561,10 @@ footer {
 
 .footer-top {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3em;
-    margin-bottom: 2em;
-    align-items: flex-start;
+    grid-template-columns: auto 1fr auto;
+    gap: 2em;
+    margin-bottom: 1.5em;
+    align-items: center;
 }
 
 .footer-logo {
@@ -1622,6 +1622,65 @@ footer {
     transform: translateY(-2px);
     border-color: #9E41B4;
     box-shadow: 0 4px 12px rgba(158, 65, 180, 0.15);
+}
+
+/* Footer Newsletter */
+.footer-newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.footer-newsletter-text {
+    color: #5a3d5c;
+    font-size: 0.85em;
+    margin: 0;
+    opacity: 0.85;
+}
+
+.footer-newsletter-form {
+    display: flex;
+    gap: 0.4em;
+}
+
+.footer-newsletter-form input {
+    flex: 1;
+    padding: 0.7em 1em;
+    border: 1px solid rgba(158, 65, 180, 0.2);
+    border-radius: 25px;
+    font-size: 0.85em;
+    background: rgba(255, 255, 255, 0.7);
+    color: #5a3d5c;
+    transition: all 0.3s ease;
+}
+
+.footer-newsletter-form input:focus {
+    outline: none;
+    border-color: #9E41B4;
+    background: white;
+    box-shadow: 0 2px 8px rgba(158, 65, 180, 0.1);
+}
+
+.footer-newsletter-form input::placeholder {
+    color: #999;
+}
+
+.footer-newsletter-form button {
+    padding: 0.7em 1.5em;
+    background: linear-gradient(135deg, #9E41B4 0%, #E5769B 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer-newsletter-form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(158, 65, 180, 0.3);
 }
 
 .footer-divider {
@@ -1690,6 +1749,31 @@ footer {
     .shape-2, .shape-3, .shape-5 {
         opacity: 0.4;
         transform: scale(0.7);
+    }
+
+    /* Footer responsive */
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+        text-align: center;
+    }
+
+    .footer-info {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-newsletter {
+        order: 2;
+    }
+
+    .footer-social {
+        text-align: center;
+        order: 3;
+    }
+
+    .footer-newsletter-form {
+        justify-content: center;
     }
 
     .hero-logo img {
