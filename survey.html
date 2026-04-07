@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Tell Us What You Think | HERR</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f9f7f3 0%, #f5f0e8 50%, #faf8f4 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .survey-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2em;
+            position: relative;
+        }
+
+        /* Floating shapes background */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .bg-shape-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #9E41B4 0%, transparent 70%);
+            top: -100px;
+            right: -50px;
+            animation: float1 25s ease-in-out infinite;
+        }
+
+        .bg-shape-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #E5769B 0%, transparent 70%);
+            bottom: 10%;
+            left: -50px;
+            animation: float2 30s ease-in-out infinite;
+        }
+
+        .bg-shape-3 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #2e8b57 0%, transparent 70%);
+            top: 40%;
+            right: 10%;
+            animation: float1 35s ease-in-out infinite reverse;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-30px) translateX(20px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(20px) translateX(-15px); }
+        }
+
+        /* Progress bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(158, 65, 180, 0.1);
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9E41B4, #E5769B);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Logo */
+        .survey-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 1em;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Survey card */
+        .survey-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5em;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(158, 65, 180, 0.15);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .survey-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #9E41B4, #E5769B, #2e8b57);
+        }
+
+        /* Question slides */
+        .question-slide {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .question-slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-30px); }
+        }
+
+        .question-number {
+            font-size: 0.85em;
+            color: #9E41B4;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .question-text {
+            font-size: 1.4em;
+            color: #5a3d5c;
+            font-weight: 700;
+            margin: 0 0 1.5em 0;
+            line-height: 1.4;
+        }
+
+        /* Option buttons */
+        .options-grid {
+            display: grid;
+            gap: 0.8em;
+        }
+
+        .option-btn {
+            background: linear-gradient(135deg, #faf8f4 0%, #f5f0e8 100%);
+            border: 2px solid rgba(158, 65, 180, 0.15);
+            border-radius: 12px;
+            padding: 1em 1.2em;
+            text-align: left;
+            font-size: 1em;
+            color: #5a3d5c;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8em;
+        }
+
+        .option-btn:hover {
+            border-color: #9E41B4;
+            background: white;
+            transform: translateX(5px);
+        }
+
+        .option-btn.selected {
+            border-color: #9E41B4;
+            background: linear-gradient(135deg, rgba(158, 65, 180, 0.1) 0%, rgba(229, 118, 155, 0.1) 100%);
+        }
+
+        .option-btn.selected .option-check {
+            background: #9E41B4;
+            border-color: #9E41B4;
+        }
+
+        .option-btn.selected .option-check svg {
+            opacity: 1;
+        }
+
+        .option-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(158, 65, 180, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .option-check svg {
+            width: 14px;
+            height: 14px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Multi-select options */
+        .options-grid.multi-select .option-check {
+            border-radius: 6px;
+        }
+
+        /* Slider input */
+        .slider-container {
+            padding: 1em 0;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5em;
+            font-size: 0.85em;
+            color: #999;
+        }
+
+        .slider-value {
+            text-align: center;
+            font-size: 2em;
+            font-weight: 700;
+            color: #9E41B4;
+            margin-bottom: 0.5em;
+        }
+
+        .price-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #f5f0e8, #E5769B, #9E41B4);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #9E41B4;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(158, 65, 180, 0.3);
+        }
+
+        /* Text area */
+        .survey-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1em;
+            border: 2px solid rgba(158, 65, 180, 0.15);
+            border-radius: 12px;
+            font-size: 1em;
+            font-family: inherit;
+            color: #5a3d5c;
+            background: #faf8f4;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .survey-textarea:focus {
+            outline: none;
+            border-color: #9E41B4;
+            background: white;
+        }
+
+        /* Rating stars */
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5em;
+            padding: 1em 0;
+        }
+
+        .rating-star {
+            font-size: 2.5em;
+            color: #ddd;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .rating-star:hover,
+        .rating-star.active {
+            color: #E5769B;
+            transform: scale(1.1);
+        }
+
+        .rating-star.active {
+            animation: starPop 0.3s ease;
+        }
+
+        @keyframes starPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Navigation */
+        .survey-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2em;
+            gap: 1em;
+        }
+
+        .nav-btn {
+            padding: 0.9em 2em;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .nav-btn.back {
+            background: transparent;
+            color: #9E41B4;
+            border: 2px solid rgba(158, 65, 180, 0.2);
+        }
+
+        .nav-btn.back:hover {
+            border-color: #9E41B4;
+            background: rgba(158, 65, 180, 0.05);
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, #9E41B4 0%, #E5769B 100%);
+            color: white;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .nav-btn.next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(158, 65, 180, 0.35);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Thank you screen */
+        .thank-you {
+            text-align: center;
+            padding: 2em 0;
+        }
+
+        .thank-you-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #2e8b57 0%, #3da36a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5em;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .thank-you-icon svg {
+            width: 50px;
+            height: 50px;
+            color: white;
+        }
+
+        .thank-you h2 {
+            color: #5a3d5c;
+            font-size: 1.8em;
+            margin: 0 0 0.5em 0;
+        }
+
+        .thank-you p {
+            color: #666;
+            font-size: 1.1em;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Hero images decoration - dynamic cluster */
+        .hero-images {
+            position: relative;
+            width: 180px;
+            height: 100px;
+            margin: 0 auto 1.5em;
+        }
+
+        .hero-img {
+            position: absolute;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 25px rgba(158, 65, 180, 0.25);
+            animation-fill-mode: both;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .hero-img:nth-child(1) {
+            width: 70px;
+            height: 70px;
+            left: 0;
+            top: 15px;
+            z-index: 1;
+            animation: floatIn1 0.8s ease forwards, gentleFloat1 4s ease-in-out 1s infinite;
+        }
+
+        .hero-img:nth-child(2) {
+            width: 85px;
+            height: 85px;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            z-index: 3;
+            animation: floatIn2 0.8s ease 0.15s forwards, gentleFloat2 5s ease-in-out 1.2s infinite;
+        }
+
+        .hero-img:nth-child(3) {
+            width: 65px;
+            height: 65px;
+            right: 0;
+            top: 20px;
+            z-index: 2;
+            animation: floatIn3 0.8s ease 0.3s forwards, gentleFloat3 4.5s ease-in-out 1.4s infinite;
+        }
+
+        .hero-img:hover {
+            transform: scale(1.2) translateY(-8px) !important;
+            z-index: 10;
+            box-shadow: 0 15px 40px rgba(158, 65, 180, 0.4);
+        }
+
+        .hero-img:nth-child(2):hover {
+            transform: translateX(-50%) scale(1.2) translateY(-8px) !important;
+        }
+
+        @keyframes floatIn1 {
+            0% { opacity: 0; transform: translateY(30px) translateX(-20px) rotate(-15deg); }
+            100% { opacity: 1; transform: translateY(0) translateX(0) rotate(0deg); }
+        }
+
+        @keyframes floatIn2 {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-30px) scale(0.5); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        }
+
+        @keyframes floatIn3 {
+            0% { opacity: 0; transform: translateY(30px) translateX(20px) rotate(15deg); }
+            100% { opacity: 1; transform: translateY(0) translateX(0) rotate(0deg); }
+        }
+
+        @keyframes gentleFloat1 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(-3deg); }
+        }
+
+        @keyframes gentleFloat2 {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        @keyframes gentleFloat3 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(3deg); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .survey-card {
+                padding: 1.8em;
+            }
+
+            .question-text {
+                font-size: 1.2em;
+            }
+
+            .rating-star {
+                font-size: 2em;
+            }
+
+            .hero-img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background shapes -->
+    <div class="bg-shapes">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="survey-container">
+        <img src="images/FF-01.png" alt="HERR" class="survey-logo">
+
+        <div class="hero-images">
+            <img src="images/two.jpg" alt="" class="hero-img">
+            <img src="images/five.jpg" alt="" class="hero-img">
+            <img src="images/four.jpg" alt="" class="hero-img">
+        </div>
+
+        <form id="surveyForm" action="https://formspree.io/f/mkgyaoaa" method="POST">
+            <input type="hidden" name="form_type" value="Exit Survey">
+
+            <div class="survey-card">
+                <!-- Question 1: Overall Rating -->
+                <div class="question-slide active" data-question="1">
+                    <div class="question-number">Question 1 of 10</div>
+                    <h2 class="question-text">How would you rate your overall experience today?</h2>
+                    <div class="rating-container">
+                        <span class="rating-star" data-value="1">&#9733;</span>
+                        <span class="rating-star" data-value="2">&#9733;</span>
+                        <span class="rating-star" data-value="3">&#9733;</span>
+                        <span class="rating-star" data-value="4">&#9733;</span>
+                        <span class="rating-star" data-value="5">&#9733;</span>
+                    </div>
+                    <input type="hidden" name="overall_rating" id="ratingValue">
+                    <div class="survey-nav">
+                        <div></div>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 2: Favorite Session -->
+                <div class="question-slide" data-question="2">
+                    <div class="question-number">Question 2 of 10</div>
+                    <h2 class="question-text">Which session was your favorite?</h2>
+                    <div class="options-grid">
+                        <button type="button" class="option-btn" data-value="HIIT">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            HIIT Workout
+                        </button>
+                        <button type="button" class="option-btn" data-value="Nutrition">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Diet & Nutrition Talk
+                        </button>
+                        <button type="button" class="option-btn" data-value="Yoga">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Yoga & Stretch
+                        </button>
+                        <button type="button" class="option-btn" data-value="Meditation">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Cool Down Meditation
+                        </button>
+
+                        <button type="button" class="option-btn" data-value="Healthy Snacks">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Healthy Snackity Snacks
+                        </button>
+                    </div>
+                    <input type="hidden" name="favorite_session" id="favoriteSession">
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 3: Pricing -->
+                <div class="question-slide" data-question="3">
+                    <div class="question-number">Question 3 of 10</div>
+                    <h2 class="question-text">How much would you pay for this experience?</h2>
+                    <div class="slider-container">
+                        <div class="slider-value">$<span id="priceDisplay">50</span></div>
+                        <input type="range" class="price-slider" id="priceSlider" min="20" max="150" value="50" step="5">
+                        <div class="slider-labels">
+                            <span>$10</span>
+                            <span>$150</span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="willing_to_pay" id="willingToPay" value="50">
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 4: Session Length -->
+                <div class="question-slide" data-question="4">
+                    <div class="question-number">Question 4 of 10</div>
+                    <h2 class="question-text">How did you feel about the session lengths (20 min each)?</h2>
+                    <div class="options-grid">
+                        <button type="button" class="option-btn" data-value="Too short">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Too short - I wanted more
+                        </button>
+                        <button type="button" class="option-btn" data-value="Perfect">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Perfect length
+                        </button>
+                        <button type="button" class="option-btn" data-value="Too long">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Too long - a bit tiring
+                        </button>
+                    </div>
+                    <input type="hidden" name="session_length" id="sessionLength">
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 5: What to Add -->
+                <div class="question-slide" data-question="5">
+                    <div class="question-number">Question 5 of 10</div>
+                    <h2 class="question-text">What would you add to future events? (Select all that apply)</h2>
+                    <div class="options-grid multi-select">
+                        <button type="button" class="option-btn multi" data-value="Dance fitness">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Dance fitness class
+                        </button>
+                        <button type="button" class="option-btn multi" data-value="Skincare workshop">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Skincare / self-care workshop
+                        </button>
+                        <button type="button" class="option-btn multi" data-value="Sound bath">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Sound bath / healing session
+                        </button>
+                        <button type="button" class="option-btn multi" data-value="More networking">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            More networking time
+                        </button>
+                        <button type="button" class="option-btn multi" data-value="Live music">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Live music / DJ
+                        </button>
+                    </div>
+                    <input type="hidden" name="add_to_events" id="addToEvents">
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 6: What to Remove -->
+                <div class="question-slide" data-question="6">
+                    <div class="question-number">Question 6 of 10</div>
+                    <h2 class="question-text">Was there anything you would remove or change?</h2>
+                    <textarea class="survey-textarea" name="remove_or_change" placeholder="Be honest - your feedback helps us improve! What didn't work for you?"></textarea>
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 7: Food Rating -->
+                <div class="question-slide" data-question="7">
+                    <div class="question-number">Question 7 of 10</div>
+                    <h2 class="question-text">How was the food & brunch experience?</h2>
+                    <div class="options-grid">
+                        <button type="button" class="option-btn" data-value="Loved it">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Loved it - delicious & healthy!
+                        </button>
+                        <button type="button" class="option-btn" data-value="Good">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Good, but could be better
+                        </button>
+                        <button type="button" class="option-btn" data-value="Okay">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            It was okay
+                        </button>
+                        <button type="button" class="option-btn" data-value="Needs improvement">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Needs improvement
+                        </button>
+                    </div>
+                    <input type="hidden" name="food_rating" id="foodRating">
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 8: Event Frequency -->
+                <div class="question-slide" data-question="8">
+                    <div class="question-number">Question 8 of 10</div>
+                    <h2 class="question-text">How often would you attend HERR events?</h2>
+                    <div class="options-grid">
+                        <button type="button" class="option-btn" data-value="Weekly">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Weekly - I'm all in!
+                        </button>
+                        <button type="button" class="option-btn" data-value="Monthly">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Monthly sounds perfect
+                        </button>
+                        <button type="button" class="option-btn" data-value="Quarterly">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Quarterly / special occasions
+                        </button>
+                        <button type="button" class="option-btn" data-value="Occasionally">
+                            <span class="option-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                            Occasionally when I can
+                        </button>
+                    </div>
+                    <input type="hidden" name="event_frequency" id="eventFrequency">
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 9: Would Recommend -->
+                <div class="question-slide" data-question="9">
+                    <div class="question-number">Question 9 of 10</div>
+                    <h2 class="question-text">How likely are you to recommend HERR to a friend?</h2>
+                    <div class="slider-container">
+                        <div class="slider-value"><span id="npsDisplay">8</span>/10</div>
+                        <input type="range" class="price-slider" id="npsSlider" min="1" max="10" value="8">
+                        <div class="slider-labels">
+                            <span>Not likely</span>
+                            <span>Definitely!</span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="recommend_score" id="recommendScore" value="8">
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="button" class="nav-btn next" onclick="nextQuestion()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Question 10: Final Thoughts -->
+                <div class="question-slide" data-question="10">
+                    <div class="question-number">Question 10 of 10</div>
+                    <h2 class="question-text">Any final thoughts or suggestions for us?</h2>
+                    <textarea class="survey-textarea" name="final_thoughts" placeholder="Share anything else on your mind - we read every response!"></textarea>
+                    <div class="survey-nav">
+                        <button type="button" class="nav-btn back" onclick="prevQuestion()">Back</button>
+                        <button type="submit" class="nav-btn next">Submit</button>
+                    </div>
+                </div>
+
+                <!-- Thank You Screen -->
+                <div class="question-slide" data-question="thanks">
+                    <div class="thank-you">
+                        <div class="thank-you-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h2>Thank You!</h2>
+                        <p>Your feedback means the world to us. We can't wait to see you at our next event!</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 10;
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestion >= totalQuestions) return;
+
+            const currentSlide = document.querySelector(`.question-slide[data-question="${currentQuestion}"]`);
+            if (!currentSlide) return;
+
+            currentSlide.style.animation = 'slideOut 0.3s ease forwards';
+
+            setTimeout(() => {
+                currentSlide.classList.remove('active');
+                currentSlide.style.animation = '';
+                currentQuestion++;
+
+                const nextSlide = document.querySelector(`.question-slide[data-question="${currentQuestion}"]`);
+                if (nextSlide) {
+                    nextSlide.classList.add('active');
+                    updateProgress();
+                }
+            }, 300);
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            if (currentQuestion <= 1) return;
+
+            const currentSlide = document.querySelector(`.question-slide[data-question="${currentQuestion}"]`);
+            currentSlide.classList.remove('active');
+            currentQuestion--;
+
+            const prevSlide = document.querySelector(`.question-slide[data-question="${currentQuestion}"]`);
+            prevSlide.classList.add('active');
+            updateProgress();
+        }
+
+        // Star rating
+        document.querySelectorAll('.rating-star').forEach(star => {
+            star.addEventListener('click', function() {
+                const value = this.dataset.value;
+                document.getElementById('ratingValue').value = value;
+
+                document.querySelectorAll('.rating-star').forEach((s, index) => {
+                    if (index < value) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Single select options
+        document.querySelectorAll('.option-btn:not(.multi)').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const parent = this.closest('.question-slide');
+                parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+
+                const hiddenInput = parent.querySelector('input[type="hidden"]');
+                if (hiddenInput) {
+                    hiddenInput.value = this.dataset.value;
+                }
+            });
+        });
+
+        // Multi-select options
+        document.querySelectorAll('.option-btn.multi').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('selected');
+
+                const parent = this.closest('.question-slide');
+                const selected = parent.querySelectorAll('.option-btn.selected');
+                const values = Array.from(selected).map(s => s.dataset.value);
+
+                const hiddenInput = parent.querySelector('input[type="hidden"]');
+                if (hiddenInput) {
+                    hiddenInput.value = values.join(', ');
+                }
+            });
+        });
+
+        // Price slider
+        const priceSlider = document.getElementById('priceSlider');
+        priceSlider.addEventListener('input', function() {
+            document.getElementById('priceDisplay').textContent = this.value;
+            document.getElementById('willingToPay').value = '$' + this.value;
+        });
+
+        // NPS slider
+        const npsSlider = document.getElementById('npsSlider');
+        npsSlider.addEventListener('input', function() {
+            document.getElementById('npsDisplay').textContent = this.value;
+            document.getElementById('recommendScore').value = this.value + '/10';
+        });
+
+        // Form submission
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Show thank you screen
+            document.querySelector('.question-slide.active').classList.remove('active');
+            document.querySelector('.question-slide[data-question="thanks"]').classList.add('active');
+            document.getElementById('progressBar').style.width = '100%';
+
+            // Submit form data
+            const formData = new FormData(this);
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
